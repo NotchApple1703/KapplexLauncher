@@ -1,0 +1,84 @@
+component SideBarItem inherits Rectangle {
+    in property <string> label;
+    in property <bool> is-active;
+
+    callback activate;
+
+    height: 40px;
+
+    HorizontalLayout {
+        Rectangle {
+            width: 5px;
+            Rectangle {
+                height: root.is-active ? 25px : 0px;
+                background: #7287fd;
+                border-radius: parent.width / 2;
+        
+                animate height {
+                    duration: 200ms;
+                    easing: ease-in-out-back;
+                }
+            }
+        }
+
+        Text {
+            vertical-alignment: center;
+            horizontal-alignment: center;
+            text: root.label;
+            font-size: 20px;
+            color: root.is-active ? white : gray;
+
+            animate color {
+                duration: 200ms;
+                easing: ease-in-out-back;
+            }
+        }
+    }
+
+    TouchArea {
+        clicked => {
+            root.activate();
+        }
+    }
+}
+
+component SideBar inherits Rectangle {
+    in-out property <int> active-page: 0;
+
+    callback activate(index: int);
+    
+    VerticalLayout {
+        for label[index] in [
+            "Instance", "Server", "Account", "Setting"
+        ] : SideBarItem {
+            label: label;
+            is-active: root.active-page == index;
+            activate => {
+                root.active-page = index;
+                root.activate(index);
+            }
+        }
+    }
+}
+
+export component MainWindow inherits Window {
+    in-out property <int> active-page: 0;
+
+    title: "Kapplex Launcher";
+    min-height: 350px;
+
+    HorizontalLayout {
+        // Main View
+        Rectangle {
+            min-width: 350px;
+        }
+
+        SideBar {
+            width: 150px;
+
+            activate(index) => {
+                root.active-page = index;
+            }
+        } 
+    }
+}
