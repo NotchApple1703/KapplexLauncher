@@ -1,6 +1,7 @@
 [package]
-name = "KapplexLauncherCore"
+name = "kapplex_launcher_core"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+reqwest = "0.12.20"
