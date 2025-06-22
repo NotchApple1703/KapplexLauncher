@@ -4,7 +4,7 @@
 slint::include_modules!();
 
 fn main() {
-    let ui = MainWindow::new().unwrap();
+    let app = MainWindow::new().unwrap();
 
-    ui.run().unwrap();
+    app.run().unwrap();
 }

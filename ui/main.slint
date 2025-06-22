@@ -1,3 +1,6 @@
+import { SpinBox, Spinner, StandardButton, Button } from "std-widgets.slint";
+import { KPalette } from "style/palette.slint";
+
 component SideBarItem inherits Rectangle {
     in property <string> label;
     in property <bool> is-active;
@@ -5,33 +8,39 @@ component SideBarItem inherits Rectangle {
     callback activate;
 
     height: 40px;
+    background: KPalette.alternate-background;
 
-    HorizontalLayout {
-        Rectangle {
-            width: 5px;
-            Rectangle {
-                height: root.is-active ? 25px : 0px;
-                background: #7287fd;
-                border-radius: parent.width / 2;
-        
-                animate height {
-                    duration: 200ms;
+    states [
+        active when is-active: {
+            background: KPalette.background;
+            indicator.height: 25px;
+            label.color: KPalette.accent-background;
+
+            in-out {
+                animate background, indicator.height, label.color {
+                    duration: 150ms;
                     easing: ease-in-out-back;
                 }
             }
         }
+    ]
 
-        Text {
+    HorizontalLayout {
+        padding-left: -2px;
+        Rectangle {
+            width: 5px;
+            indicator := Rectangle {
+                background: KPalette.accent-background;
+                border-radius: parent.width / 2;
+            }
+        }
+
+        label := Text {
             vertical-alignment: center;
             horizontal-alignment: center;
             text: root.label;
+            color: KPalette.foreground;
             font-size: 20px;
-            color: root.is-active ? white : gray;
-
-            animate color {
-                duration: 200ms;
-                easing: ease-in-out-back;
-            }
         }
     }
 
@@ -46,6 +55,8 @@ component SideBar inherits Rectangle {
     in-out property <int> active-page: 0;
 
     callback activate(index: int);
+
+    background: KPalette.alternate-background;
     
     VerticalLayout {
         for label[index] in [
@@ -65,16 +76,19 @@ export component MainWindow inherits Window {
     in-out property <int> active-page: 0;
 
     title: "Kapplex Launcher";
-    min-height: 350px;
+    min-height: 500px;
+    max-height: 10000px;
+
+    background: KPalette.background;
 
     HorizontalLayout {
         // Main View
         Rectangle {
-            min-width: 350px;
+            min-width: 600px;
         }
 
         SideBar {
-            width: 150px;
+            width: 200px;
 
             activate(index) => {
                 root.active-page = index;
