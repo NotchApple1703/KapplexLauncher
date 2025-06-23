@@ -1,5 +1,7 @@
 import { SpinBox, Spinner, StandardButton, Button } from "std-widgets.slint";
-import { KPalette } from "style/palette.slint";
+import { LKPalette } from "style/palette.slint";
+
+export { LKPalette }
 
 component SideBarItem inherits Rectangle {
     in property <string> label;
@@ -8,17 +10,17 @@ component SideBarItem inherits Rectangle {
     callback activate;
 
     height: 40px;
-    background: KPalette.alternate-background;
+    background: LKPalette.alternate-background;
 
     states [
         active when is-active: {
-            background: KPalette.background;
+            background: LKPalette.background;
             indicator.height: 25px;
-            label.color: KPalette.accent-background;
+            label.color: LKPalette.accent-background;
 
             in-out {
                 animate background, indicator.height, label.color {
-                    duration: 150ms;
+                    duration: 200ms;
                     easing: ease-in-out-back;
                 }
             }
@@ -30,7 +32,7 @@ component SideBarItem inherits Rectangle {
         Rectangle {
             width: 5px;
             indicator := Rectangle {
-                background: KPalette.accent-background;
+                background: LKPalette.accent-background;
                 border-radius: parent.width / 2;
             }
         }
@@ -39,7 +41,7 @@ component SideBarItem inherits Rectangle {
             vertical-alignment: center;
             horizontal-alignment: center;
             text: root.label;
-            color: KPalette.foreground;
+            color: LKPalette.foreground;
             font-size: 20px;
         }
     }
@@ -56,7 +58,7 @@ component SideBar inherits Rectangle {
 
     callback activate(index: int);
 
-    background: KPalette.alternate-background;
+    background: LKPalette.alternate-background;
     
     VerticalLayout {
         for label[index] in [
@@ -75,11 +77,11 @@ component SideBar inherits Rectangle {
 export component MainWindow inherits Window {
     in-out property <int> active-page: 0;
 
-    title: "Kapplex Launcher";
+    title: "LK Launcher";
     min-height: 500px;
     max-height: 10000px;
 
-    background: KPalette.background;
+    background: LKPalette.background;
 
     HorizontalLayout {
         // Main View
