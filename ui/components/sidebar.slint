@@ -1,4 +1,7 @@
-import { Style } from "@globals";
+import { Style } from "@ui/globals.slint";
+
+import { FontWeight } from "@ui/fonts/font_weight.slint";
+import "@ui/fonts/JetBrainsMono-Regular.ttf";
 
 export component SideBarItem inherits Rectangle {
     in property <string> label;
@@ -6,13 +9,12 @@ export component SideBarItem inherits Rectangle {
 
     callback activate;
 
-    height: 40px;
     background: Style.palette.alternate-background;
 
     states [
         active when is-active: {
             background: Style.palette.background;
-            indicator.height: 25px;
+            indicator.height: self.height * 2 / 3;
             label.color: Style.palette.accent-background;
 
             in-out {
@@ -25,9 +27,9 @@ export component SideBarItem inherits Rectangle {
     ]
 
     HorizontalLayout {
-        padding-left: -2px;
+        padding: 8px;
         Rectangle {
-            width: 5px;
+            width: 8px;
             indicator := Rectangle {
                 background: Style.palette.accent-background;
                 border-radius: parent.width / 2;
@@ -39,7 +41,9 @@ export component SideBarItem inherits Rectangle {
             horizontal-alignment: center;
             text: root.label;
             color: Style.palette.foreground;
-            font-size: 20px;
+            font-family: "JetBrains Mono";
+            font-weight: FontWeight.BOLD;
+            font-size: 25px;
         }
     }
 
@@ -52,6 +56,7 @@ export component SideBarItem inherits Rectangle {
 
 export component SideBar inherits Rectangle {
     in-out property <int> active-page: 0;
+    in property <length> item-height;
 
     callback activate(index: int);
 
@@ -62,6 +67,7 @@ export component SideBar inherits Rectangle {
             "Instance", "Server", "Account", "Setting"
         ] : SideBarItem {
             label: label;
+            height: root.item-height;
             is-active: root.active-page == index;
             activate => {
                 root.active-page = index;

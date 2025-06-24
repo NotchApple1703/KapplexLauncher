@@ -1,7 +1,7 @@
-import { SideBar, SideBarItem } from "@components/sidebar.slint";
-import { Style } from "@globals";
+import { SideBar, SideBarItem } from "@ui/components/sidebar.slint";
+import { Style } from "@ui/globals.slint";
 
-export * from "@globals";
+export * from "@ui/globals.slint";
 
 export component MainWindow inherits Window {
     in-out property <int> active-page: 0;
@@ -20,7 +20,8 @@ export component MainWindow inherits Window {
         }
 
         SideBar {
-            width: 200px;
+            width: 250px;
+            item-height: 60px;
             background: Style.palette.alternate-background;
 
             activate(index) => {

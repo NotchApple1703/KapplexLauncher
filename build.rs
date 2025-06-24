@@ -10,9 +10,7 @@ fn convert_libraries_path(libraries_path: HashMap<&str, &str>) -> HashMap<String
 
 fn main() {
     let libraries_path = convert_libraries_path(HashMap::from([
-        ("globals", "ui/globals.slint"),
-        ("style", "ui/style"),
-        ("components", "ui/components")
+        ("ui", "ui")
     ]));
 
     let config = slint_build::CompilerConfiguration::new()

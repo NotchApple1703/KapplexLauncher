@@ -1,7 +1,5 @@
 {
     "slint.libraryPaths": {
-        "globals": "ui/globals.slint",
-        "style": "ui/style",
-        "components": "ui/components"
+        "ui": "ui" 
     },
 }
