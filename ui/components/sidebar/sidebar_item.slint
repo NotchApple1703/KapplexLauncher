@@ -1,10 +1,10 @@
 import { Style } from "@ui/globals.slint";
-
-import { FontWeight } from "@ui/fonts/font_weight.slint";
-import "@ui/fonts/JetBrainsMono-Regular.ttf";
+import { IndicatorPosition, FontWeight } from "@ui/enums.slint";
 
 export component SideBarItem inherits Rectangle {
-    in property <string> label;
+    in property <string> text <=> label.text;
+    in property <length> font_size <=> label.font-size;
+    in property <IndicatorPosition> indicator_position;
     in property <bool> is-active;
 
     callback activate;
@@ -26,9 +26,9 @@ export component SideBarItem inherits Rectangle {
         }
     ]
 
-    HorizontalLayout {
-        padding: 8px;
+    Rectangle {
         Rectangle {
+            x: (indicator_position == IndicatorPosition.LEFT) ? 8px : parent.width - 2*8px;
             width: 8px;
             indicator := Rectangle {
                 background: Style.palette.accent-background;
@@ -39,7 +39,6 @@ export component SideBarItem inherits Rectangle {
         label := Text {
             vertical-alignment: center;
             horizontal-alignment: center;
-            text: root.label;
             color: Style.palette.foreground;
             font-family: "JetBrains Mono";
             font-weight: FontWeight.BOLD;
@@ -50,29 +49,6 @@ export component SideBarItem inherits Rectangle {
     TouchArea {
         clicked => {
             root.activate();
-        }
-    }
-}
-
-export component SideBar inherits Rectangle {
-    in-out property <int> active-page: 0;
-    in property <length> item-height;
-
-    callback activate(index: int);
-
-    background: Style.palette.alternate-background;
-    
-    VerticalLayout {
-        for label[index] in [
-            "Instance", "Server", "Account", "Setting"
-        ] : SideBarItem {
-            label: label;
-            height: root.item-height;
-            is-active: root.active-page == index;
-            activate => {
-                root.active-page = index;
-                root.activate(index);
-            }
         }
     }
 }

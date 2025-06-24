@@ -1,4 +1,6 @@
-import { SideBar, SideBarItem } from "@ui/components/sidebar.slint";
+import { SideBar } from "@ui/components/sidebar/sidebar.slint";
+
+import { IndicatorPosition } from "@ui/enums.slint";
 import { Style } from "@ui/globals.slint";
 
 export * from "@ui/globals.slint";
@@ -20,8 +22,10 @@ export component MainWindow inherits Window {
         }
 
         SideBar {
-            width: 250px;
+            width: 220px;
             item-height: 60px;
+            item-font-size: 22px;
+            item-indicator_position: IndicatorPosition.LEFT;
             background: Style.palette.alternate-background;
 
             activate(index) => {

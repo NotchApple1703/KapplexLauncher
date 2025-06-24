@@ -1,0 +1,33 @@
+import { SideBarItem } from "@ui/components/sidebar/sidebar_item.slint";
+
+import { Style } from "@ui/globals.slint";
+import { IndicatorPosition, FontWeight } from "@ui/enums.slint";
+
+import "@ui/fonts/JetBrainsMono-Regular.ttf";
+
+export component SideBar inherits Rectangle {
+    in-out property <int> active-page: 0;
+    in property <length> item-height;
+    in property <length> item-font-size;
+    in property <IndicatorPosition> item-indicator_position;
+
+    callback activate(index: int);
+
+    background: Style.palette.alternate-background;
+    
+    VerticalLayout {
+        for label[index] in [
+            "Instance", "Server", "Account", "Setting"
+        ] : SideBarItem {
+            text: label;
+            height: root.item-height;
+            font_size: root.item-font-size;
+            indicator_position: root.item-indicator_position;
+            is-active: root.active-page == index;
+            activate => {
+                root.active-page = index;
+                root.activate(index);
+            }
+        }
+    }
+}
