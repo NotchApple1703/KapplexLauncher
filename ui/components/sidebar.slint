@@ -1,4 +1,4 @@
-import { LKPalette } from "@style/palette.slint";
+import { GlobalState } from "@globals";
 
 export component SideBarItem inherits Rectangle {
     in property <string> label;
@@ -7,13 +7,13 @@ export component SideBarItem inherits Rectangle {
     callback activate;
 
     height: 40px;
-    background: LKPalette.alternate-background;
+    background: GlobalState.palette.alternate-background;
 
     states [
         active when is-active: {
-            background: LKPalette.background;
+            background: GlobalState.palette.background;
             indicator.height: 25px;
-            label.color: LKPalette.accent-background;
+            label.color: GlobalState.palette.accent-background;
 
             in-out {
                 animate background, indicator.height, label.color {
@@ -29,7 +29,7 @@ export component SideBarItem inherits Rectangle {
         Rectangle {
             width: 5px;
             indicator := Rectangle {
-                background: LKPalette.accent-background;
+                background: GlobalState.palette.accent-background;
                 border-radius: parent.width / 2;
             }
         }
@@ -38,7 +38,7 @@ export component SideBarItem inherits Rectangle {
             vertical-alignment: center;
             horizontal-alignment: center;
             text: root.label;
-            color: LKPalette.foreground;
+            color: GlobalState.palette.foreground;
             font-size: 20px;
         }
     }
@@ -55,7 +55,7 @@ export component SideBar inherits Rectangle {
 
     callback activate(index: int);
 
-    background: LKPalette.alternate-background;
+    background: GlobalState.palette.alternate-background;
     
     VerticalLayout {
         for label[index] in [

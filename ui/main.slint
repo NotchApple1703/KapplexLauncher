@@ -1,8 +1,7 @@
-import { LKPalette } from "style/palette.slint";
-
 import { SideBar, SideBarItem } from "@components/sidebar.slint";
+import { GlobalState } from "@globals";
 
-export { LKPalette }
+export * from "@globals";
 
 export component MainWindow inherits Window {
     in-out property <int> active-page: 0;
@@ -11,16 +10,18 @@ export component MainWindow inherits Window {
     min-height: 500px;
     max-height: 10000px;
 
-    background: LKPalette.background;
+    background: GlobalState.palette.background;
 
     HorizontalLayout {
         // Main View
         Rectangle {
             min-width: 600px;
+            background: GlobalState.palette.background;
         }
 
         SideBar {
             width: 200px;
+            background: GlobalState.palette.alternate-background;
 
             activate(index) => {
                 root.active-page = index;
