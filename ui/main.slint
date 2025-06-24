@@ -1,78 +1,8 @@
-import { SpinBox, Spinner, StandardButton, Button } from "std-widgets.slint";
 import { LKPalette } from "style/palette.slint";
 
+import { SideBar, SideBarItem } from "@components/sidebar.slint";
+
 export { LKPalette }
-
-component SideBarItem inherits Rectangle {
-    in property <string> label;
-    in property <bool> is-active;
-
-    callback activate;
-
-    height: 40px;
-    background: LKPalette.alternate-background;
-
-    states [
-        active when is-active: {
-            background: LKPalette.background;
-            indicator.height: 25px;
-            label.color: LKPalette.accent-background;
-
-            in-out {
-                animate background, indicator.height, label.color {
-                    duration: 200ms;
-                    easing: ease-in-out-back;
-                }
-            }
-        }
-    ]
-
-    HorizontalLayout {
-        padding-left: -2px;
-        Rectangle {
-            width: 5px;
-            indicator := Rectangle {
-                background: LKPalette.accent-background;
-                border-radius: parent.width / 2;
-            }
-        }
-
-        label := Text {
-            vertical-alignment: center;
-            horizontal-alignment: center;
-            text: root.label;
-            color: LKPalette.foreground;
-            font-size: 20px;
-        }
-    }
-
-    TouchArea {
-        clicked => {
-            root.activate();
-        }
-    }
-}
-
-component SideBar inherits Rectangle {
-    in-out property <int> active-page: 0;
-
-    callback activate(index: int);
-
-    background: LKPalette.alternate-background;
-    
-    VerticalLayout {
-        for label[index] in [
-            "Instance", "Server", "Account", "Setting"
-        ] : SideBarItem {
-            label: label;
-            is-active: root.active-page == index;
-            activate => {
-                root.active-page = index;
-                root.activate(index);
-            }
-        }
-    }
-}
 
 export component MainWindow inherits Window {
     in-out property <int> active-page: 0;
