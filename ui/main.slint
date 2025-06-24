@@ -23,10 +23,11 @@ export component MainWindow inherits Window {
 
         SideBar {
             width: 220px;
+            background: Style.palette.alternate-background;
+            
             item-height: 60px;
             item-font-size: 22px;
             item-indicator_position: IndicatorPosition.LEFT;
-            background: Style.palette.alternate-background;
 
             activate(index) => {
                 root.active-page = index;

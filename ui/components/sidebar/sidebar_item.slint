@@ -2,8 +2,8 @@ import { Style } from "@ui/globals.slint";
 import { IndicatorPosition, FontWeight } from "@ui/enums.slint";
 
 export component SideBarItem inherits Rectangle {
-    in property <string> text <=> label.text;
-    in property <length> font_size <=> label.font-size;
+    in property <string> text;
+    in property <length> font_size;
     in property <IndicatorPosition> indicator_position;
     in property <bool> is-active;
 
@@ -37,12 +37,13 @@ export component SideBarItem inherits Rectangle {
         }
 
         label := Text {
+            text: root.text;
             vertical-alignment: center;
             horizontal-alignment: center;
             color: Style.palette.foreground;
             font-family: "JetBrains Mono";
             font-weight: FontWeight.BOLD;
-            font-size: 25px;
+            font-size: root.font_size;
         }
     }
 
