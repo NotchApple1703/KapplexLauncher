@@ -1,5 +1,5 @@
 import { SideBar, SideBarItem } from "@components/sidebar.slint";
-import { GlobalState } from "@globals";
+import { Style } from "@globals";
 
 export * from "@globals";
 
@@ -10,18 +10,18 @@ export component MainWindow inherits Window {
     min-height: 500px;
     max-height: 10000px;
 
-    background: GlobalState.palette.background;
+    background: Style.palette.background;
 
     HorizontalLayout {
         // Main View
         Rectangle {
             min-width: 600px;
-            background: GlobalState.palette.background;
+            background: Style.palette.background;
         }
 
         SideBar {
             width: 200px;
-            background: GlobalState.palette.alternate-background;
+            background: Style.palette.alternate-background;
 
             activate(index) => {
                 root.active-page = index;

@@ -1,0 +1,27 @@
+export struct Palette {
+    background: color,
+    foreground: color,
+    alternate-background: color,
+    alternate-foreground: color,
+    control-background: color,
+    control-foreground: color,
+    accent-background: color,
+    accent-foreground: color,
+    selection-background: color,
+    selection-foreground: color,
+}
+
+export global Style {
+    in property <Palette> palette: {
+        background: #1e1e2e,
+        foreground: #cdd6f4,
+        alternate-background: #181825,
+        alternate-foreground: #bac2de,
+        control-background: #313244,
+        control-foreground: #cdd6f4,
+        accent-background: #89b4fa,
+        accent-foreground: #cdd6f4,
+        selection-background: #b4befe,
+        selection-foreground: #1e1e2e,
+    };
+}
