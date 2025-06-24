@@ -14,8 +14,8 @@ fn main() {
         ("components", "ui/components")
     ]));
 
-    let mut config = slint_build::CompilerConfiguration::new();
-    config = config.with_library_paths(libraries_path);
+    let config = slint_build::CompilerConfiguration::new()
+        .with_library_paths(libraries_path);
 
     slint_build::compile_with_config("ui/main.slint", config).unwrap();
 }
