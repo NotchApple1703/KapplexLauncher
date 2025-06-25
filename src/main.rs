@@ -6,7 +6,7 @@ mod launcher_initialization;
 slint::include_modules!();
 
 fn main() {
-    launcher_initialization::initialize_launcher_directory();
+    launcher_initialization::initialize_launcher_root_directory();
 
     let app = MainWindow::new().unwrap();
     app.run().unwrap();

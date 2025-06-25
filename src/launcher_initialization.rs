@@ -1,7 +1,10 @@
-use std::fs;
+use std::{env, fs};
 
-pub fn initialize_launcher_directory() {
-    let directories = [
+pub fn initialize_launcher_root_directory() {
+    let launcher_executable_path = env::current_exe().unwrap();
+    let launcher_root_directory = launcher_executable_path.parent().unwrap();
+
+    [
         "assets",
         "cache",
         "icons",
@@ -11,9 +14,9 @@ pub fn initialize_launcher_directory() {
         "logs",
         "themes",
         "translations"
-    ];
-
-    directories.iter().for_each(
-        |directory| fs::create_dir(directory).unwrap()
-    );
+    ]
+    .iter()
+    .for_each( |directory| {
+        let _ = fs::create_dir(launcher_root_directory.join(directory));
+    });
 }

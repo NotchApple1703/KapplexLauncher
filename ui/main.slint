@@ -3,6 +3,23 @@ import { SideBar } from "@ui/components/sidebar/sidebar.slint";
 import { IndicatorPosition } from "@ui/enums.slint";
 import { Style } from "@ui/globals.slint";
 
+import "@ui/fonts/ttf/JetBrainsMono-Bold.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-BoldItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-ExtraBold.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-ExtraBoldItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-ExtraLight.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-ExtraLightItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-Italic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-Light.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-LightItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-Medium.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-MediumItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-Regular.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-SemiBold.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-SemiBoldItalic.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-Thin.ttf";
+import "@ui/fonts/ttf/JetBrainsMono-ThinItalic.ttf";
+
 export * from "@ui/globals.slint";
 
 export component MainWindow inherits Window {
@@ -28,6 +45,7 @@ export component MainWindow inherits Window {
             item-height: 60px;
             item-font-size: 22px;
             item-indicator_position: IndicatorPosition.LEFT;
+            item-font-weight: 600;
 
             activate(index) => {
                 root.active-page = index;

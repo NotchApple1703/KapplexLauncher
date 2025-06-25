@@ -1,10 +1,11 @@
 import { Style } from "@ui/globals.slint";
-import { IndicatorPosition, FontWeight } from "@ui/enums.slint";
+import { IndicatorPosition } from "@ui/enums.slint";
 
 export component SideBarItem inherits Rectangle {
     in property <string> text;
-    in property <length> font_size;
-    in property <IndicatorPosition> indicator_position;
+    in property <length> font-size;
+    in property <int> font-weight;
+    in property <IndicatorPosition> indicator-position;
     in property <bool> is-active;
 
     callback activate;
@@ -28,7 +29,9 @@ export component SideBarItem inherits Rectangle {
 
     Rectangle {
         Rectangle {
-            x: (indicator_position == IndicatorPosition.LEFT) ? 8px : parent.width - 2*8px;
+            x: root.indicator-position == IndicatorPosition.LEFT
+                ? 8px
+                : parent.width - 2*8px;
             width: 8px;
             indicator := Rectangle {
                 background: Style.palette.accent-background;
@@ -42,8 +45,8 @@ export component SideBarItem inherits Rectangle {
             horizontal-alignment: center;
             color: Style.palette.foreground;
             font-family: "JetBrains Mono";
-            font-weight: FontWeight.BOLD;
             font-size: root.font_size;
+            font-weight: root.font-weight;
         }
     }
 

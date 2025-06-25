@@ -1,14 +1,13 @@
 import { SideBarItem } from "@ui/components/sidebar/sidebar_item.slint";
 
 import { Style } from "@ui/globals.slint";
-import { IndicatorPosition, FontWeight } from "@ui/enums.slint";
-
-import "@ui/fonts/JetBrainsMono-Regular.ttf";
+import { IndicatorPosition } from "@ui/enums.slint";
 
 export component SideBar inherits Rectangle {
     in-out property <int> active-page: 0;
     in property <length> item-height;
     in property <length> item-font-size;
+    in property <int> item-font-weight;
     in property <IndicatorPosition> item-indicator_position;
 
     callback activate(index: int);
@@ -22,8 +21,10 @@ export component SideBar inherits Rectangle {
             text: label;
             height: root.item-height;
             font_size: root.item-font-size;
+            font-weight: root.item-font-weight;
             indicator_position: root.item-indicator_position;
             is-active: root.active-page == index;
+
             activate => {
                 root.active-page = index;
                 root.activate(index);
