@@ -42,9 +42,15 @@ export component MainWindow inherits Window {
             width: 220px;
             background: Style.palette.alternate-background;
             
+            item-list: [
+                "Instances",
+                "Servers",
+                "Accounts",
+                "Settings",
+            ];
             item-height: 60px;
             item-font-size: 22px;
-            item-indicator_position: IndicatorPosition.LEFT;
+            item-indicator-position: IndicatorPosition.LEFT;
             item-font-weight: 600;
 
             activate(index) => {
