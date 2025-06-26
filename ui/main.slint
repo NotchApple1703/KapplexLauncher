@@ -1,4 +1,6 @@
-import { SideBar } from "@ui/components/sidebar/sidebar.slint";
+import { SideBar } from "@ui/components/components.slint";
+import { InstancesPage, ServersPage, AccountsPage, SettingsPage } from "@ui/pages/pages.slint";
+import { YAxisSwipe } from "@ui/transitions/transitions.slint";
 
 import { IndicatorPosition } from "@ui/enums.slint";
 import { Style } from "@ui/globals.slint";
@@ -36,6 +38,27 @@ export component MainWindow inherits Window {
         Rectangle {
             min-width: 600px;
             background: Style.palette.background;
+
+            YAxisSwipe {
+                active-page: root.active-page;
+                page-index: 0;
+                InstancesPage {}
+            }
+            YAxisSwipe {
+                active-page: root.active-page;
+                page-index: 1;
+                ServersPage {}
+            }
+            YAxisSwipe {
+                active-page: root.active-page;
+                page-index: 2;
+                AccountsPage {}
+            }
+            YAxisSwipe {
+                active-page: root.active-page;
+                page-index: 3;
+                SettingsPage {}
+            }
         }
 
         SideBar {

@@ -1,7 +1,8 @@
 import { SideBarItem } from "@ui/components/sidebar/sidebar_item.slint";
+import { IndicatorPosition } from "@ui/components/sidebar/indicator_position.slint";
 
 import { Style } from "@ui/globals.slint";
-import { IndicatorPosition } from "@ui/enums.slint";
+
 
 export component SideBar inherits Rectangle {
     in-out property <int> active-page: 0;
@@ -21,7 +22,7 @@ export component SideBar inherits Rectangle {
             height: root.item-height;
             font_size: root.item-font-size;
             font-weight: root.item-font-weight;
-            indicator_position: root.item-indicator-position;
+            indicator-position: root.item-indicator-position;
             is-active: root.active-page == index;
 
             activate => {

@@ -1,0 +1,27 @@
+export component YAxisSwipe inherits Rectangle {
+    in property <int> active-page;
+    in property <int> page-index;
+
+    function calculate_page_y(page-index: int) -> length {
+        if (root.active-page == page-index) {
+            return 0;
+        }
+        return root.active-page < page-index ? self.height / 2 : -self.height / 2;
+    }
+
+    Rectangle {
+        y: calculate_page_y(root.page-index);
+        opacity: root.active-page == page-index ? 1 : 0;
+
+        animate y {
+            duration: 200ms;
+            easing: ease-out-quad;
+        }
+        animate opacity {
+            duration: 200ms;
+            easing: ease-out-quad;
+        }
+
+        @children
+    }
+}
