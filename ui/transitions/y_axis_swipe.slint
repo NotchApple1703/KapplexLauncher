@@ -2,6 +2,10 @@ export component YAxisSwipe inherits Rectangle {
     in property <int> active-page;
     in property <int> page-index;
 
+    // Make the component moves up or down based on the page index
+    // If page-idex == active-page, it stays at 0
+    // If page-index < active-page, it moves up
+    // If page-index > active-page, it moves down
     function calculate_page_y(page-index: int) -> length {
         if (root.active-page == page-index) {
             return 0;
