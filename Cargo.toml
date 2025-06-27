@@ -5,6 +5,8 @@ edition = "2024"
 
 [dependencies]
 slint = { version = "1.12.1", features = ["renderer-skia"] }
+log = "0.4.27"
+simplelog = "0.12.2"
 
 [build-dependencies]
 slint-build = "1.12.1"
